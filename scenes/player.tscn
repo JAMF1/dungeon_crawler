@@ -345,14 +345,16 @@ size = Vector2(8.333336, 12.333334)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_02wca"]
 size = Vector2(13, 19)
 
-[node name="Player" type="CharacterBody2D" unique_id=352199951]
+[node name="Player" type="CharacterBody2D" unique_id=352199951 groups=["player"]]
+scale = Vector2(0.24384256, 0.24384256)
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1613491958]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_utxm4")
-animation = &"dodge"
+animation = &"death"
 autoplay = "idle"
+frame_progress = 0.8783755
 
 [node name="hitBox" type="CollisionShape2D" parent="." unique_id=1412307838]
 position = Vector2(0.4999977, 14.499999)

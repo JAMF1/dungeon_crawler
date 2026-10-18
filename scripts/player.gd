@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed: int = 300
+var speed: int = 100
 var is_dodging = false
 
 func get_input():
