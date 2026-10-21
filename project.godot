@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="dungeon_crawler"
-run/main_scene="uid://crq7lo8hxqdpv"
+run/main_scene="uid://cphf4wloo2qj2"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
