@@ -3,24 +3,23 @@ class_name EnemyFollow
 
 @onready var enemy: CharacterBody2D = $"../.."
 
-#Access player position from enemy
-#put into physics_update to consistently track
-#do enemy .direction_to() to follow position of player
-#move 
-
-var locate_player: Vector2
+var player_location: Vector2
 
 func enter():
-	locate_player = enemy.global_position.direction_to(enemy.player_pos.global_position)
+	pass
 	
 func exit():
 	pass
 	
+	
+func update(_delta):
+	player_location = enemy.global_position.direction_to(enemy.current_player_pos)
+	
+
 func physics_update(_delta) -> void:
-	if locate_player:
-		enemy.velocity = locate_player * enemy.enemy_roam_speed
-		
-	print(locate_player)
+	if player_location:
+		enemy.velocity = player_location * enemy.enemy_roam_speed
+	
 	enemy.move_and_slide()
 
 	

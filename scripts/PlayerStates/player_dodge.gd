@@ -18,6 +18,10 @@ func enter():
 			dodge_direction = Vector2.RIGHT	
 
 	
+	
+func process_update(_delta):
+	pass
+	
 func physics_update(_delta):
 	player.velocity = dodge_direction * dodge_speed
 	player.move_and_slide()

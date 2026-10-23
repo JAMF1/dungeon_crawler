@@ -157,7 +157,7 @@ animations = [{
 size = Vector2(12, 19)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_utxm4"]
-radius = 46.0
+radius = 59.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1423247825]
 collision_layer = 8
@@ -172,6 +172,7 @@ animation = &"idle_down"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1872946395]
 collision_layer = 16
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=788153585]
 position = Vector2(0, 0.5)
@@ -202,6 +203,7 @@ script = ExtResource("9_8qclf")
 [node name="follow" type="Node" parent="state_machine" unique_id=470901314]
 script = ExtResource("11_w8i8w")
 
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]
 [connection signal="timeout" from="state_machine/idle/Timer" to="state_machine/idle" method="_on_timer_timeout"]

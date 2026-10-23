@@ -8,7 +8,6 @@ class_name EnemyIdle
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 
 
-
 func enter():
 	enemy.velocity = Vector2.ZERO
 	if wander.enemy.enemy_direction.x > 0:
@@ -22,9 +21,15 @@ func enter():
 
 func exit():
 	timer.stop()
-
-func physics_update(_delta: float):
+	
+	
+func update(_delta):
 	pass
+
+
+func physics_update(_delta):
+	pass
+
 
 func _on_timer_timeout() -> void:
 	get_parent().change_state($"../wander")

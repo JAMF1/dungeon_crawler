@@ -3,7 +3,7 @@ extends StateClass
 @onready var player: CharacterBody2D = $"../.."
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 
-var player_speed: float = 450.0
+var player_speed: float = 100.0
 
 
 func enter(): 
@@ -11,6 +11,10 @@ func enter():
 	
 func exit():
 	pass
+
+	
+func process_update(_delta):
+	pass	
 	
 func physics_update(_delta):
 	if Input.is_action_just_pressed("dodge"):

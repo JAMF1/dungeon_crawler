@@ -9,6 +9,8 @@ func enter():
 func exit():
 	pass
 	
+func process_update(_delta):
+	pass
 	
 func physics_update(_delta):
 	if Input.is_action_just_pressed("dodge"):
