@@ -1,7 +1,6 @@
 class_name StateClass
 extends Node
 
-signal Transition
 
 func enter() -> void:
 	pass

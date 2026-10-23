@@ -8,8 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://cqlcmpecyhxlg" path="res://assets/temp/mole/walk/mole-walk-side.png" id="6_otmr2"]
 [ext_resource type="Texture2D" uid="uid://bk04v0en66bfm" path="res://assets/temp/mole/walk/mole-walk-back.png" id="7_wtq4b"]
 [ext_resource type="Script" uid="uid://cbufxvkqg336n" path="res://managers/state_machine.gd" id="8_8qclf"]
-[ext_resource type="Script" uid="uid://bdx3oy1l7yvuh" path="res://scripts/EnemyStates/EnemeyIdle.gd" id="8_ipns3"]
+[ext_resource type="Script" uid="uid://bdx3oy1l7yvuh" path="res://scripts/EnemyStates/EnemyIdle.gd" id="8_ipns3"]
 [ext_resource type="Script" uid="uid://6kheumwivuuq" path="res://scripts/EnemyStates/EnemyWander.gd" id="9_8qclf"]
+[ext_resource type="Script" uid="uid://1ntkfhl3vg5l" path="res://scripts/EnemyStates/EnemyFollow.gd" id="11_w8i8w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utxm4"]
+size = Vector2(14, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0cyh"]
 atlas = ExtResource("2_md484")
@@ -149,26 +153,36 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y4kuj"]
-size = Vector2(14, 21)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qclf"]
+size = Vector2(12, 19)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_utxm4"]
 radius = 46.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1423247825]
+collision_layer = 8
 script = ExtResource("1_nenq2")
+
+[node name="WallCollision" type="CollisionShape2D" parent="." unique_id=194541983]
+shape = SubResource("RectangleShape2D_utxm4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=285256831]
 sprite_frames = SubResource("SpriteFrames_utxm4")
 animation = &"idle_down"
 
-[node name="WallCollision" type="CollisionShape2D" parent="." unique_id=450369091]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_y4kuj")
+[node name="Hitbox" type="Area2D" parent="." unique_id=1872946395]
+collision_layer = 16
 
-[node name="DetectionZone" type="CollisionShape2D" parent="." unique_id=1038507757]
-light_mask = 2
-visibility_layer = 2
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=788153585]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_8qclf")
+debug_color = Color(1, 0.009205295, 0.9411639, 0.41960785)
+
+[node name="Detection" type="Area2D" parent="." unique_id=847583040]
+collision_layer = 32
+collision_mask = 2
+
+[node name="DetectionZone" type="CollisionShape2D" parent="Detection" unique_id=1038507757]
 shape = SubResource("CircleShape2D_utxm4")
 debug_color = Color(5.0055983e-06, 0.64736074, 0.22148034, 0.41960785)
 
@@ -186,6 +200,9 @@ script = ExtResource("9_8qclf")
 [node name="Timer" type="Timer" parent="state_machine/wander" unique_id=809598706]
 
 [node name="follow" type="Node" parent="state_machine" unique_id=470901314]
+script = ExtResource("11_w8i8w")
 
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]
 [connection signal="timeout" from="state_machine/idle/Timer" to="state_machine/idle" method="_on_timer_timeout"]
 [connection signal="timeout" from="state_machine/wander/Timer" to="state_machine/wander" method="_on_timer_timeout"]
