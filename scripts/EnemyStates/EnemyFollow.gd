@@ -7,6 +7,7 @@ class_name EnemyFollow
 #put into physics_update to consistently track
 #do enemy .direction_to() to follow position of player
 #move 
+
 var locate_player: Vector2
 
 func enter():
