@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c5802p5uyjtj5" path="res://assets/knight.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://cctg23377kw6f" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="PackedScene" uid="uid://cfuhd2hujpjbi" path="res://scenes/player_weapon.tscn" id="2_fjrip"]
 [ext_resource type="Script" uid="uid://cbufxvkqg336n" path="res://managers/state_machine.gd" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://cr8hlnuubp4ia" path="res://scripts/PlayerStates/player_idle.gd" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://5cl2tlk8y45t" path="res://scripts/PlayerStates/player_move.gd" id="5_qlg0r"]
@@ -349,10 +350,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_02wca"]
 size = Vector2(8.202007, 16.40401)
 
-[node name="Player" type="CharacterBody2D" unique_id=352199951 groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=352199951]
 scale = Vector2(0.24384256, 0.24384256)
 collision_layer = 2
 script = ExtResource("1_g2els")
+
+[node name="player_weapon" parent="." unique_id=491136323 instance=ExtResource("2_fjrip")]
+position = Vector2(9.536743e-07, 12.30302)
+scale = Vector2(1.0323437, 1.0323437)
 
 [node name="WallCollision" type="CollisionShape2D" parent="." unique_id=980297183]
 position = Vector2(-2.0505037, 8.202014)

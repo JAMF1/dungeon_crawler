@@ -3,7 +3,7 @@ extends StateClass
 @onready var player: CharacterBody2D = $"../.."
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 
-var dodge_speed: float = 500.0
+var dodge_speed: float = 50.0
 var dodge_direction: Vector2
 
 func enter():
