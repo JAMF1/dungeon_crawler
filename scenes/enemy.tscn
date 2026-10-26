@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1cdiefnaci0" path="res://scripts/enemy.gd" id="1_nenq2"]
 [ext_resource type="Texture2D" uid="uid://buwhlfolv2asp" path="res://assets/temp/mole/idle/mole-idle-front.png" id="2_md484"]
+[ext_resource type="PackedScene" uid="uid://do0lrbj2wma5b" path="res://scenes/health_component.tscn" id="2_otmr2"]
 [ext_resource type="Texture2D" uid="uid://b1mrbcg6tkonk" path="res://assets/temp/mole/idle/mole-idle-side.png" id="3_ipns3"]
 [ext_resource type="Texture2D" uid="uid://c27pqxem2aslx" path="res://assets/temp/mole/idle/mole-idle-back.png" id="4_8qclf"]
 [ext_resource type="Texture2D" uid="uid://d1gmfihwah582" path="res://assets/temp/mole/walk/mole-walk-front.png" id="5_w8i8w"]
@@ -163,6 +164,8 @@ radius = 59.0
 collision_layer = 8
 script = ExtResource("1_nenq2")
 
+[node name="HealthComponent" parent="." unique_id=1520428660 instance=ExtResource("2_otmr2")]
+
 [node name="WallCollision" type="CollisionShape2D" parent="." unique_id=194541983]
 shape = SubResource("RectangleShape2D_utxm4")
 
@@ -203,6 +206,7 @@ script = ExtResource("9_8qclf")
 [node name="follow" type="Node" parent="state_machine" unique_id=470901314]
 script = ExtResource("11_w8i8w")
 
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]

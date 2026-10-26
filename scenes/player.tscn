@@ -7,9 +7,7 @@
 [ext_resource type="Script" uid="uid://cr8hlnuubp4ia" path="res://scripts/PlayerStates/player_idle.gd" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://5cl2tlk8y45t" path="res://scripts/PlayerStates/player_move.gd" id="5_qlg0r"]
 [ext_resource type="Script" uid="uid://tmiqftuiwbcw" path="res://scripts/PlayerStates/player_dodge.gd" id="6_tuyoq"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_utxm4"]
-size = Vector2(53.313087, 73.81812)
+[ext_resource type="PackedScene" uid="uid://do0lrbj2wma5b" path="res://scenes/health_component.tscn" id="8_smehm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqfne"]
 atlas = ExtResource("1_4flbx")
@@ -202,7 +200,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_487ah")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"death",
 "speed": 6.0
 }, {
@@ -347,39 +345,45 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utxm4"]
+size = Vector2(53.313087, 73.81812)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_02wca"]
-size = Vector2(8.202007, 16.40401)
+size = Vector2(13.670009, 16.40401)
 
 [node name="Player" type="CharacterBody2D" unique_id=352199951]
 scale = Vector2(0.24384256, 0.24384256)
 collision_layer = 2
 script = ExtResource("1_g2els")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1613491958]
+z_index = 1
+position = Vector2(0, -8.202014)
+scale = Vector2(3.8446944, 3.588381)
+sprite_frames = SubResource("SpriteFrames_utxm4")
+animation = &"death"
+autoplay = "idle"
+frame = 1
+frame_progress = 0.3690118
+
 [node name="player_weapon" parent="." unique_id=491136323 instance=ExtResource("2_fjrip")]
 position = Vector2(9.536743e-07, 12.30302)
 scale = Vector2(1.0323437, 1.0323437)
 
 [node name="WallCollision" type="CollisionShape2D" parent="." unique_id=980297183]
-position = Vector2(-2.0505037, 8.202014)
 shape = SubResource("RectangleShape2D_utxm4")
 debug_color = Color(0.73972404, 0.46727985, 0, 0.41960785)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1613491958]
-z_index = 1
-scale = Vector2(3.8446941, 3.588381)
-sprite_frames = SubResource("SpriteFrames_utxm4")
-animation = &"death"
-autoplay = "idle"
-frame_progress = 0.8783755
-
-[node name="Area2D" type="Area2D" parent="." unique_id=1308007011]
+[node name="Hitbox" type="Area2D" parent="." unique_id=1308007011]
 position = Vector2(-4.8887813e-07, 12.30303)
 scale = Vector2(3.0000026, 3.0000026)
 collision_layer = 4
+collision_mask = 9
 
-[node name="Hitbox" type="CollisionShape2D" parent="Area2D" unique_id=378142733]
+[node name="Collision" type="CollisionShape2D" parent="Hitbox" unique_id=378142733]
 z_index = 2
-scale = Vector2(1.0000001, 1.0000001)
+position = Vector2(-5.7035754e-07, -2.7340057)
+scale = Vector2(1.0000004, 1.0000004)
 shape = SubResource("RectangleShape2D_02wca")
 
 [node name="state_machine" type="Node" parent="." unique_id=1767364584]
@@ -394,4 +398,8 @@ script = ExtResource("5_qlg0r")
 [node name="dodge" type="Node" parent="state_machine" unique_id=603769429]
 script = ExtResource("6_tuyoq")
 
+[node name="HealthComponent" parent="." unique_id=1520428660 instance=ExtResource("8_smehm")]
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="state_machine/dodge" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

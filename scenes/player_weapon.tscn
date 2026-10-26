@@ -80,7 +80,7 @@ position = Vector2(48, 0)
 [node name="blade" type="Node2D" parent="swingpivot" unique_id=303675671]
 
 [node name="Sprite2D" type="Sprite2D" parent="swingpivot/blade" unique_id=1113953323]
-position = Vector2(16, -16)
+position = Vector2(0, -16)
 texture = ExtResource("1_3kfca")
 
 [node name="Hitbox" type="Area2D" parent="swingpivot/blade" unique_id=112794245]
