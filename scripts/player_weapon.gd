@@ -34,6 +34,7 @@ func _on_hitbox_body_entered(body: Node) -> void:
 	if body in _already_hit:
 		return
 	_already_hit.append(body)
+	print(body)
 	hit.emit()
 
 func update_damage(updated_damage: int) -> void:

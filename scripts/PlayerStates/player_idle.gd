@@ -1,10 +1,10 @@
 extends StateClass
 
-@onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
+@onready var animation: AnimatedSprite2D = $"../../AnimatedSprite2D"
 
 
 func enter():
-	animated_sprite_2d.play("idle")
+	animation.play("idle")
 	
 func exit():
 	pass
