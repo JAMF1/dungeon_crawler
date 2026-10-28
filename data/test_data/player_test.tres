@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://bow5cxwt4o1ph"]
+
+[ext_resource type="Script" uid="uid://chhefcqf6hi3c" path="res://resources/player_data.gd" id="1_wi5ko"]
+
+[resource]
+script = ExtResource("1_wi5ko")
+max_health = 3
+movement_speed = 100.0
+attack_interval = 2.0
+invincibility_frame_time = 1.7
+dodge_speed = 50.0
+sword_damage = 5
+metadata/_custom_type_script = "uid://chhefcqf6hi3c"

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d1cdiefnaci0" path="res://scripts/enemy.gd" id="1_nenq2"]
 [ext_resource type="Texture2D" uid="uid://buwhlfolv2asp" path="res://assets/temp/mole/idle/mole-idle-front.png" id="2_md484"]
 [ext_resource type="PackedScene" uid="uid://do0lrbj2wma5b" path="res://scenes/health_component.tscn" id="2_otmr2"]
+[ext_resource type="Resource" uid="uid://bt815n4kitfbg" path="res://data/test_data/enemy_test.tres" id="2_wtq4b"]
 [ext_resource type="Texture2D" uid="uid://b1mrbcg6tkonk" path="res://assets/temp/mole/idle/mole-idle-side.png" id="3_ipns3"]
 [ext_resource type="Texture2D" uid="uid://c27pqxem2aslx" path="res://assets/temp/mole/idle/mole-idle-back.png" id="4_8qclf"]
 [ext_resource type="Texture2D" uid="uid://d1gmfihwah582" path="res://assets/temp/mole/walk/mole-walk-front.png" id="5_w8i8w"]
@@ -163,6 +164,7 @@ radius = 59.0
 [node name="Enemy" type="CharacterBody2D" unique_id=1423247825]
 collision_layer = 8
 script = ExtResource("1_nenq2")
+data = ExtResource("2_wtq4b")
 
 [node name="HealthComponent" parent="." unique_id=1520428660 instance=ExtResource("2_otmr2")]
 
@@ -190,25 +192,23 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_utxm4")
 debug_color = Color(5.0055983e-06, 0.64736074, 0.22148034, 0.41960785)
 
-[node name="state_machine" type="Node" parent="." unique_id=1173609782]
+[node name="state_machine" type="Node" parent="." unique_id=1173609782 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("8_8qclf")
+initial_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="state_machine" unique_id=811888835]
+[node name="idle" type="Node" parent="state_machine" unique_id=354859251]
 script = ExtResource("8_ipns3")
+metadata/_custom_type_script = "uid://cdregd7xvlw8"
 
-[node name="Timer" type="Timer" parent="state_machine/idle" unique_id=2070181713]
-
-[node name="wander" type="Node" parent="state_machine" unique_id=22827882]
+[node name="wander" type="Node" parent="state_machine" unique_id=240595017]
 script = ExtResource("9_8qclf")
+metadata/_custom_type_script = "uid://cdregd7xvlw8"
 
-[node name="Timer" type="Timer" parent="state_machine/wander" unique_id=809598706]
-
-[node name="follow" type="Node" parent="state_machine" unique_id=470901314]
+[node name="follow" type="Node" parent="state_machine" unique_id=402101735]
 script = ExtResource("11_w8i8w")
+metadata/_custom_type_script = "uid://cdregd7xvlw8"
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]
-[connection signal="timeout" from="state_machine/idle/Timer" to="state_machine/idle" method="_on_timer_timeout"]
-[connection signal="timeout" from="state_machine/wander/Timer" to="state_machine/wander" method="_on_timer_timeout"]

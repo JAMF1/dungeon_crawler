@@ -1,7 +1,4 @@
 extends StateClass
-class_name EnemyFollow
-
-@onready var enemy: CharacterBody2D = $"../.."
 
 var player_location: Vector2
 
@@ -11,33 +8,12 @@ func enter():
 func exit():
 	pass
 	
-	
 func update(_delta):
-	player_location = enemy.global_position.direction_to(enemy.current_player_pos)
+	player_location = owner_node.global_position.direction_to(owner_node.current_player_pos)
 	
 
 func physics_update(_delta) -> void:
 	if player_location:
-		enemy.velocity = player_location * enemy.enemy_roam_speed
+		owner_node.velocity = player_location * owner_node.data.chase_speed
 	
-	enemy.move_and_slide()
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	owner_node.move_and_slide()

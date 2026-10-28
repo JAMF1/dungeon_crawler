@@ -85,6 +85,7 @@ texture = ExtResource("1_3kfca")
 
 [node name="Hitbox" type="Area2D" parent="swingpivot/blade" unique_id=112794245]
 position = Vector2(136, -48)
+collision_mask = 16
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="swingpivot/blade/Hitbox" unique_id=990633523]

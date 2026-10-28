@@ -2,7 +2,7 @@ class_name PlayerWeapon
 extends Node2D
 
 signal hit
-@export var damage := 10
+@export var damage: int
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var hitbox: Area2D = $swingpivot/blade/Hitbox
 
@@ -33,9 +33,10 @@ func swing() -> void:
 func _on_hitbox_body_entered(body: Node) -> void:
 	if body in _already_hit:
 		return
-	_already_hit.append(body)
-	print(body)
-	hit.emit()
+	if body is Enemy:
+		_already_hit.append(body)
+		body.health.take_damage(damage)
+		hit.emit()
 
 func update_damage(updated_damage: int) -> void:
 	damage = updated_damage
