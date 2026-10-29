@@ -408,3 +408,4 @@ script = ExtResource("8_ur7pv")
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="state_machine/dodge" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

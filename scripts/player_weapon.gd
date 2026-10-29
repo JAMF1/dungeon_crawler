@@ -7,6 +7,8 @@ signal hit
 @onready var hitbox: Area2D = $swingpivot/blade/Hitbox
 
 var is_swinging := false
+var knockback_force: float
+var knockback_duration: float
 var _already_hit: Array = []
 
 func _ready() -> void:
@@ -34,8 +36,11 @@ func _on_hitbox_body_entered(body: Node) -> void:
 	if body in _already_hit:
 		return
 	if body is Enemy:
+		var knockback_direction = (body.global_position - global_position).normalized()
 		_already_hit.append(body)
 		body.health.take_damage(damage)
+		body.apply_knockback(knockback_direction, knockback_force, knockback_duration)
+		print("Enemy Health Remaining:", body.health.current_health)
 		hit.emit()
 
 func update_damage(updated_damage: int) -> void:

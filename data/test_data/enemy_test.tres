@@ -8,4 +8,5 @@ max_health = 5
 roam_speed = 10.0
 attack_interval = 3.0
 chase_speed = 15.0
+attack_damage = 2
 metadata/_custom_type_script = "uid://ms6j7100itnq"

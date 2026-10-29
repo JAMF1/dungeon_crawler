@@ -7,3 +7,5 @@ extends Resource
 @export var invincibility_frame_time: float
 @export var dodge_speed: float
 @export var sword_damage: int
+@export var knockback_force: float
+@export var knockback_duration: float
