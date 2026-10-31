@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c5802p5uyjtj5" path="res://assets/knight.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://cctg23377kw6f" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://cfuhd2hujpjbi" path="res://scenes/player_weapon.tscn" id="2_fjrip"]
-[ext_resource type="Resource" uid="uid://bow5cxwt4o1ph" path="res://data/test_data/player_test.tres" id="2_y4r1p"]
+[ext_resource type="Resource" uid="uid://bow5cxwt4o1ph" path="res://DATA/test_data/player_test.tres" id="2_y4r1p"]
 [ext_resource type="Script" uid="uid://cbufxvkqg336n" path="res://managers/state_machine.gd" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://cr8hlnuubp4ia" path="res://scripts/PlayerStates/player_idle.gd" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://5cl2tlk8y45t" path="res://scripts/PlayerStates/player_move.gd" id="5_qlg0r"]
@@ -348,10 +348,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_utxm4"]
-size = Vector2(53.313087, 73.81812)
+size = Vector2(49.212082, 65.61611)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_02wca"]
-size = Vector2(13.670009, 16.40401)
+size = Vector2(12.303005, 16.40401)
 
 [node name="Player" type="CharacterBody2D" unique_id=352199951]
 scale = Vector2(0.24384256, 0.24384256)
@@ -364,16 +364,17 @@ data = ExtResource("2_y4r1p")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1613491958]
 z_index = 1
 position = Vector2(0, -8.202014)
-scale = Vector2(3.8446944, 3.588381)
+scale = Vector2(3.0757551, 3.3320682)
 sprite_frames = SubResource("SpriteFrames_utxm4")
 animation = &"run"
 autoplay = "idle"
 
 [node name="player_weapon" parent="." unique_id=491136323 instance=ExtResource("2_fjrip")]
-position = Vector2(9.536743e-07, 12.30302)
-scale = Vector2(1.0323437, 1.0323437)
+position = Vector2(0, 12.3030205)
+scale = Vector2(0.907, 0.907)
 
 [node name="WallCollision" type="CollisionShape2D" parent="." unique_id=980297183]
+position = Vector2(-4.1010065, 0)
 shape = SubResource("RectangleShape2D_utxm4")
 debug_color = Color(0.73972404, 0.46727985, 0, 0.41960785)
 
@@ -385,8 +386,8 @@ collision_mask = 9
 
 [node name="Collision" type="CollisionShape2D" parent="Hitbox" unique_id=378142733]
 z_index = 2
-position = Vector2(-5.7035754e-07, -2.7340057)
-scale = Vector2(1.0000004, 1.0000004)
+position = Vector2(-0.68350065, -2.7340057)
+scale = Vector2(1.0000006, 1.0000006)
 shape = SubResource("RectangleShape2D_02wca")
 
 [node name="state_machine" type="Node" parent="." unique_id=1767364584 node_paths=PackedStringArray("initial_state")]
